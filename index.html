@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hadouken demo</title>
+	<style>
+	body {
+		width: 750px;
+		margin: 0 auto;
+	}
+	.main {
+		position: relative;
+	}
+	.hadouken {
+		position: absolute;
+		top: 28%;
+		left: 45%;
+	}
+</style>
+</head>
+<body>
+	<div class="main"></div>	
+
+
+	<script
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+	<script>
+
+		// insert '<img src="images/ryu_stand_still.png">' into the .main div
+		$( '.main' ).append('<img class="ryu" src=images/ryu_stand_still.png>');
+		// animate ryu when hovered over
+		// Hint: think of using mouseover and mouseout events
+		$('.main .ryu')
+			.mouseover(function() {
+				$('.ryu').attr('src', 'images/ryu_animated.gif')
+			})
+			.mouseout(function() {
+				$('.ryu').attr('src', 'images/ryu_stand_still.png')
+			});
+		
+		// When you click on ryu, he should do a "hadouken"
+		// Hint: think of using mousedown and mouseup and animate(to animate the hadouken gif).
+
+		$('.ryu').mousedown(function() {
+			console.log('fuuuuu')
+			this.src = 'images/ryu_hadoken_pose.png';
+			
+			$('.main').append('<img class="hadouken" src="images/hadouken.gif">');
+
+			$('.hadouken').animate({
+				"margin-left": "400px"
+			}, 1000, 'swing', function() {
+				this.remove();
+			});
+		})
+		.mouseup(function(){
+			this.src = 'images/ryu_animated.gif';
+		});
+
+		
+	</script>
+</body>
+</html>
